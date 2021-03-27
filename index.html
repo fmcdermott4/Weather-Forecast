@@ -35,23 +35,30 @@
         <main class="container-fluid">
             <div class="row">
                 <aside class="col-3 container">
-                    <form class="form-inline">
+                    <form class="form-inline container-fluid">
                         <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Search for a City</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Search for a City">
+                            <h5>Search for a City</h5>
+                            <!-- <label for="" class="sr-only">Search for a City</label>
+                            <input type="text" readonly class="form-control-plaintext" id="cityInputText" value="Search for a City"> -->
                         </div>
                         <div class="row">
                             <div class="form-group mx-sm-3 mb-2">
                                 <label for="cityInput" class="sr-only">City</label>
                                 <input type="text" class="form-control" id="cityInput" placeholder="Atlanta">
                             </div>
-                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                            <button type="submit" id="citySubmit" class="btn btn-primary mb-2">Submit</button>
                         </div>
                     </form>
+                    
+                    <div class="btn-group-vertical container-fluid" id="history">
+                        <h5>History</h5>
+                        <button class="btn btn-primary" type="button">Button</button>
+                        <button class="btn btn-primary" type="button">Button</button>
+                    </div>
                 </aside>
                 <div class="col-lg-9 container">
                     <section class="container">
-                        <h1> City Data</h1>
+                        <h3> City Data</h3>
                     </section>
                     <section class="container">
                         <h3>5-Day Forecast</h3>
