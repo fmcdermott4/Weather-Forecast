@@ -23,7 +23,7 @@ function localCities() {
 
 // api call for city weather data
 function getCity(city) {
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=90e1750460ce4e52ef6971110d7e95e1&limit=1'
+    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=90e1750460ce4e52ef6971110d7e95e1&limit=1&units=imperial'
     fetch(apiUrl)
     .then(function (response) {
         if (response.ok) {
@@ -54,5 +54,15 @@ function workWithData(cityData, city) {
         }
         localStorage.setItem("cities", JSON.stringify(storedCities));
     }
+    debugger;
+    $("#cityName").empty();
+    $("#cityName").append(cityData.city.name);
+    var today = new Date();
+    $("#currentDate").empty();
+    $("#currentDate").append("Current Date: " + today.toLocaleDateString());
+    $("#weatherConditions").empty();
+    $("#weatherConditions").append(`<img src="http://openweathermap.org/img/wn/` + cityData.list[0].weather[0].icon + `@2x.png" alt="current weather image">`)
     localCities()
 }
+
+// date help https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
