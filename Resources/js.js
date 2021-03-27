@@ -66,16 +66,15 @@ function weatherUpdate(lat , lon , city){
                 var today = new Date();
                 $("#currentDate").empty();
                 $("#currentDate").append("Current Date: " + today.toLocaleDateString());
-                $("#weatherConditions").empty();
-                // $("#weatherConditions").append(`<img src="http://openweathermap.org/img/wn/` + cityData.list[0].weather[0].icon + `@2x.png" alt="current weather image">`)
-                //     $("#tempHigh").empty();
-                //     $("#tempHigh").append(`High: ` + cityData.list[0].main.temp_max + `°F`)
-                //     $("#tempLow").empty()
-                //     $("#tempLow").append(`Low: ` + cityData.list[0].main.temp_min + `°F`)
-                //     $("#humidity").empty();
-                //     $("#humidity").append(`Humidity: ` + cityData.list[0].main.humidity +`%`);
-                //     $("#windSpeed").empty();
-                //     $("#windSpeed").append(`Wind speed: ` + cityData.list[0].wind.speed +`mph`);
+                $("#cityName").append(`<img src="http://openweathermap.org/img/wn/` + data.current.weather[0].icon + `@2x.png" alt="current weather image">`)
+                $("#temp").empty();
+                $("#temp").append(`Temperature: ` + data.current.temp + `°F`)
+                $("#humidity").empty();
+                $("#humidity").append(`Humidity: ` + data.current.humidity +`%`);
+                $("#windSpeed").empty();
+                $("#windSpeed").append(`Wind speed: ` + data.current.wind_speed +`mph`);
+                $("#uvIndex").empty();
+                $("#uvIndex").append(`UV Index: ` + data.current.uvi)
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -86,41 +85,11 @@ function weatherUpdate(lat , lon , city){
     });
 };
 
+$("#clearButton").on("click" , function () {
+    $("#history").empty();
+    localStorage.removeItem("cities");
+})
 
 
-
-// function workWithData(cityData, city) {
-//     if (localStorage.getItem("cities") === null){
-//         var storedCities = [];
-//         storedCities[0] = city;
-//         localStorage.setItem("cities", JSON.stringify(storedCities));
-//     } else {
-//         var storedCities = JSON.parse(localStorage.getItem("cities"));
-//         storedCities.unshift(city);
-//         for (i=1;i<storedCities.length;i++) {
-//             if (city === storedCities[i]){
-//                 storedCities.splice(i,1);
-//             }
-//         }
-//         localStorage.setItem("cities", JSON.stringify(storedCities));
-//     }
-//     debugger;
-//     $("#cityName").empty();
-//     $("#cityName").append(cityData.city.name);
-//     var today = new Date();
-//     $("#currentDate").empty();
-//     $("#currentDate").append("Current Date: " + today.toLocaleDateString());
-//     $("#weatherConditions").empty();
-//     $("#weatherConditions").append(`<img src="http://openweathermap.org/img/wn/` + cityData.list[0].weather[0].icon + `@2x.png" alt="current weather image">`)
-//     $("#tempHigh").empty();
-//     $("#tempHigh").append(`High: ` + cityData.list[0].main.temp_max + `°F`)
-//     $("#tempLow").empty()
-//     $("#tempLow").append(`Low: ` + cityData.list[0].main.temp_min + `°F`)
-//     $("#humidity").empty();
-//     $("#humidity").append(`Humidity: ` + cityData.list[0].main.humidity +`%`);
-//     $("#windSpeed").empty();
-//     $("#windSpeed").append(`Wind speed: ` + cityData.list[0].wind.speed +`mph`);
-//     localCities()
-// }
 
 // date help https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
