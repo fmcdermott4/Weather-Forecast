@@ -1,0 +1,12 @@
+.container {
+    border-style: solid;
+}
+.flex-row {
+    display:flex;
+    flex-wrap:wrap;
+}
+#cardRow {
+}
+.card {
+    background-color:blue;
+}
