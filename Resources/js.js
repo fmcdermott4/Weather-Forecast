@@ -93,7 +93,7 @@ function futureConditions(data){
     debugger;
     var today = new Date();
     for(i=0;i<5;i++){
-        today.setDate(today.getDate()+i);
+        today.setDate(today.getDate()+1);
         $("#card"+i).empty();
         $("#card" + i).append(`<p>` + today.toLocaleDateString() +`</p>`)
         $("#card" +i).append(`<img src="http://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
