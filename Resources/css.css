@@ -1,5 +1,5 @@
 .container {
-    border-style: solid;
+    /* border-style: solid; */
 }
 .flex-row {
     display:flex;
@@ -15,4 +15,7 @@
 }
 p {
     margin-bottom: 0rem;
+}
+aside {
+    margin-left:0px;
 }
