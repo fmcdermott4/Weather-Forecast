@@ -77,7 +77,8 @@ function weatherUpdate(lat , lon , city){
                 $("#windSpeed").empty();
                 $("#windSpeed").append(`Wind speed: ` + data.current.wind_speed +`mph`);
                 $("#uvIndex").empty();
-                $("#uvIndex").append(`UV Index: ` + data.current.uvi)
+                $("#uvIndex").append(`UV Index: <div class="card col-1" id="uvColor">` + data.current.uvi + `</div>`)
+                uvColorChange();
                 futureConditions(data);
             });
         } else {
@@ -88,15 +89,23 @@ function weatherUpdate(lat , lon , city){
         alert('Unable to connect to OpenWeatherMap');
     });
 };
+// varies opacity of uv background
+function uvColorChange(){
+var uv =$("#uvColor")[0].textContent;
+debugger;
+var opacity = parseFloat(uv);
+opacity = (opacity/10);
+$("#uvColor").css("color","black");
+$("#uvColor").css("background-color","rgba(255,0,0," + opacity + ")");
+}
 // updates future conditions
 function futureConditions(data){
-    debugger;
     var today = new Date();
     for(i=0;i<5;i++){
         today.setDate(today.getDate()+1);
-        $("#card"+i).empty();
+        $("#card" + i).empty();
         $("#card" + i).append(`<p>` + today.toLocaleDateString() +`</p>`)
-        $("#card" +i).append(`<img src="http://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
+        $("#card" + i).append(`<img src="http://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
         $("#card" + i).append(`<p>Temperature: ` + data.daily[i].temp.day+ `°F</p>`);
         $("#card" + i).append(`<p>Humidity: `+ data.daily[i].humidity +`%</p>`);
     }
