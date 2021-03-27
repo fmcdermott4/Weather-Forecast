@@ -10,3 +10,6 @@
 .card {
     background-color:blue;
 }
+.btn-primary:hover {
+    background-color: rgba(0, 0, 255, 0.50);
+}
