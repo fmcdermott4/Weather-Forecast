@@ -39,6 +39,7 @@ function getCity(city) {
     });
 };
 
+
 function workWithData(cityData, city) {
     if (localStorage.getItem("cities") === null){
         var storedCities = [];
@@ -62,6 +63,14 @@ function workWithData(cityData, city) {
     $("#currentDate").append("Current Date: " + today.toLocaleDateString());
     $("#weatherConditions").empty();
     $("#weatherConditions").append(`<img src="http://openweathermap.org/img/wn/` + cityData.list[0].weather[0].icon + `@2x.png" alt="current weather image">`)
+    $("#tempHigh").empty();
+    $("#tempHigh").append(`High: ` + cityData.list[0].main.temp_max + `°F`)
+    $("#tempLow").empty()
+    $("#tempLow").append(`Low: ` + cityData.list[0].main.temp_min + `°F`)
+    $("#humidity").empty();
+    $("#humidity").append(`Humidity: ` + cityData.list[0].main.humidity +`%`);
+    $("#windSpeed").empty();
+    $("#windSpeed").append(`Wind speed: ` + cityData.list[0].wind.speed +`mph`);
     localCities()
 }
 
