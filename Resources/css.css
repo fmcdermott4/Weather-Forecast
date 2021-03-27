@@ -9,15 +9,11 @@
 }
 .card {
     background-color:blue;
+    color:white;
 }
 .btn-primary:hover {
     background-color: rgba(0, 0, 255, 0.50);
 }
-p {
-    margin-bottom: 0rem;
-}
-aside {
-    margin-left:0px;
-}
-#clearButton {
+.card-body p {
+    white-space: nowrap;
 }

@@ -5,7 +5,7 @@ $("#citySubmit").on("click", cityInput);
 function cityInput(event){
     event.preventDefault();
     var city = $("#cityInput")[0].value;
-    var cityObject = getCity(city);
+    getCity(city);
 }
 
 // local storage city check and display
@@ -16,9 +16,13 @@ function localCities() {
         var storedCities = JSON.parse(localStorage.getItem("cities"));
         $("#history").empty();
         for (i = 0; i <storedCities.length; i++){
-            $("#history").append(`<button class="btn btn-primary" type="button">` + storedCities[i] + `</button>`)
+            $("#history").append(`<button onclick="cityHistory('` + storedCities[i] + `')" class="btn btn-primary" type="button">` + storedCities[i] + `</button>`)
         }
     }
+}
+function cityHistory(city){
+    $("#cityInput")[0].value = city;
+    cityInput(event);
 }
 
 // api call for city weather data
@@ -53,14 +57,13 @@ function getCity(city) {
         alert('Unable to connect to OpenWeatherMap');
     });
 };
-
+// updates current conditions, calls functiont o update future conditions
 function weatherUpdate(lat , lon , city){
     var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=` + lat + `&lon=` + lon + `&exclude=hourly,minutely&appid=90e1750460ce4e52ef6971110d7e95e1&units=imperial`;
     fetch(apiUrl)
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                debugger;
                 $("#cityName").empty();
                 $("#cityName").append(city);
                 var today = new Date();
@@ -75,6 +78,7 @@ function weatherUpdate(lat , lon , city){
                 $("#windSpeed").append(`Wind speed: ` + data.current.wind_speed +`mph`);
                 $("#uvIndex").empty();
                 $("#uvIndex").append(`UV Index: ` + data.current.uvi)
+                futureConditions(data);
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -84,7 +88,19 @@ function weatherUpdate(lat , lon , city){
         alert('Unable to connect to OpenWeatherMap');
     });
 };
-
+// updates future conditions
+function futureConditions(data){
+    debugger;
+    var today = new Date();
+    for(i=0;i<5;i++){
+        today.setDate(today.getDate()+i);
+        $("#card"+i).empty();
+        $("#card" + i).append(`<p>` + today.toLocaleDateString() +`</p>`)
+        $("#card" +i).append(`<img src="http://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
+        $("#card" + i).append(`<p>Temperature: ` + data.daily[i].temp.day+ `°F</p>`);
+        $("#card" + i).append(`<p>Humidity: `+ data.daily[i].humidity +`%</p>`);
+    }
+}
 $("#clearButton").on("click" , function () {
     $("#history").empty();
     localStorage.removeItem("cities");
