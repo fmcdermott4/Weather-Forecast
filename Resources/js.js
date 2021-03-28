@@ -69,7 +69,7 @@ function weatherUpdate(lat , lon , city){
                 var today = new Date();
                 $("#currentDate").empty();
                 $("#currentDate").append("Current Date: " + today.toLocaleDateString());
-                $("#cityName").append(`<img src="http://openweathermap.org/img/wn/` + data.current.weather[0].icon + `@2x.png" alt="current weather image">`)
+                $("#cityName").append(`<img src="https://openweathermap.org/img/wn/` + data.current.weather[0].icon + `@2x.png" alt="current weather image">`)
                 $("#temp").empty();
                 $("#temp").append(`Temperature: ` + data.current.temp + `°F`)
                 $("#humidity").empty();
@@ -104,7 +104,7 @@ function futureConditions(data){
         today.setDate(today.getDate()+1);
         $("#card" + i).empty();
         $("#card" + i).append(`<p>` + today.toLocaleDateString() +`</p>`)
-        $("#card" + i).append(`<img src="http://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
+        $("#card" + i).append(`<img src="https://openweathermap.org/img/wn/` + data.daily[i].weather[0].icon + `@2x.png" alt="future weather image">`);
         $("#card" + i).append(`<p>Temperature: ` + data.daily[i].temp.day+ `°F</p>`);
         $("#card" + i).append(`<p>Humidity: `+ data.daily[i].humidity +`%</p>`);
     }
