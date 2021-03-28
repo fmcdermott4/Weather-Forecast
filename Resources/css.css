@@ -1,6 +1,3 @@
-.container {
-    border-style: solid;
-}
 .flex-row {
     display:flex;
     flex-wrap:wrap;
