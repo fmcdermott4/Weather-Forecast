@@ -27,7 +27,7 @@ function cityHistory(city){
 
 // api call for city weather data
 function getCity(city) {
-    var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=90e1750460ce4e52ef6971110d7e95e1&limit=1&units=imperial'
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=90e1750460ce4e52ef6971110d7e95e1&limit=1&units=imperial'
     fetch(apiUrl)
     .then(function (response) {
         if (response.ok) {
