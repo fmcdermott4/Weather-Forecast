@@ -77,7 +77,7 @@ function weatherUpdate(lat , lon , city){
                 $("#windSpeed").empty();
                 $("#windSpeed").append(`Wind speed: ` + data.current.wind_speed +`mph`);
                 $("#uvIndex").empty();
-                $("#uvIndex").append(`UV Index: <div class="card col-1" id="uvColor">` + data.current.uvi + `</div>`)
+                $("#uvIndex").append(`UV Index: <div class="row card col-xl-1 col-md-1 col-xs-2" id="uvColor">` + data.current.uvi + `</div>`)
                 uvColorChange();
                 futureConditions(data);
             });
@@ -92,7 +92,6 @@ function weatherUpdate(lat , lon , city){
 // varies opacity of uv background
 function uvColorChange(){
 var uv =$("#uvColor")[0].textContent;
-debugger;
 var opacity = parseFloat(uv);
 opacity = (opacity/10);
 $("#uvColor").css("color","black");
